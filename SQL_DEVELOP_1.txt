@@ -1,0 +1,278 @@
+1.	DESC STUDENT;
+2.	DESC SUBJECT;
+3.	SELECT * FROM STUDENT;
+4.	SELECT * FROM ENROL;
+5.	SELECT stu_no, stu_name
+	FROM STUDENT;
+6.	SELECT sub_no, sub_name
+	FROM    SUBJECT;
+7.	SELECT stu_no, stu_name, stu_gender
+	FROM   STUDENT;
+8.	SELECT * FROM STUDENT;
+9.	SELECT stu_no, stu_name, stu_grade, stu_class
+	FROM STUDENT;
+10.	SELECT sub_name, sub_prof
+	FROM SUBJECT;
+11.	SELECT sub_no, stu_no, enr_grade
+	FROM ENROL;
+12.	SELECT stu_height, stu_weight, stu_no, stu_name
+	FROM STUDENT;
+13.	SELECT DISTINCT stu_dept
+	FROM STUDENT;
+14.	SELECT DISTINCT stu_gender
+	FROM STUDENT;
+15.	SELECT DISTINCT stu_grade
+	FROM STUDENT;
+16.	SELECT DISTINCT stu_grade, stu_dept
+	FROM STUDENT;
+17.	SELECT DISTINCT stu_class, stu_dept
+	FROM STUDENT;
+18.	SELECT stu_weight+5
+	FROM STUDENT;
+19.	SELECT stu_weight-5
+	FROM STUDENT;
+20.	SELECT stu_no AS 학번, stu_name AS 이름
+	FROM STUDENT;
+21.	SELECT enr_grade AS 점수, stu_no AS 학번, sub_no AS 과목번호
+	FROM ENROL;
+22.	SELECT sub_name AS 과목이름, sub_prof AS 교수명
+	FROM SUBJECT;
+23.	SELECT stu_dept||stu_name
+	FROM STUDENT;
+24.	SELECT DISTINCT STU_DEPT||'과 '||'옥한빛 입니다'
+	FROM STUDENT
+	WHERE STU_DEPT = '컴퓨터정보';
+25.	SELECT * FROM STUDENT
+	WHERE stu_dept = '컴퓨터정보';
+26.	SELECT * FROM STUDENT
+	WHERE stu_dept = '기계';
+27.	SELECT * FROM STUDENT
+	WHERE stu_dept = '전기전자';
+28.	SELECT stu_height
+	FROM STUDENT
+	WHERE stu_height >= 170;
+29.	SELECT stu_weight
+	FROM STUDENT
+	WHERE stu_weight >= 65;
+30.	SELECT stu_no, stu_name
+	FROM STUDENT
+	WHERE stu_dept = '기계';
+31.	SELECT stu_no, stu_name
+	FROM STUDENT
+	WHERE stu_dept = '컴퓨터정보';
+32.	SELECT stu_no, stu_name
+	FROM STUDENT
+	WHERE stu_dept = '전기전자';
+33.	SELECT stu_name
+	FROM STUDENT
+	WHERE stu_gender = 'M';
+34.	SELECT stu_name
+	FROM STUDENT
+	WHERE stu_gender = 'F';
+35.	SELECT *
+	FROM STUDENT
+	WHERE NOT stu_dept = '전기전자';
+36.	SELECT *
+	FROM STUDENT
+	WHERE NOT stu_dept = '기계';
+37.	SELECT stu_no
+	FROM ENROL
+	WHERE enr_grade >= 80;
+38.	SELECT *
+	FROM STUDENT
+	WHERE stu_name = '김인중';	
+39.	SELECT *
+	FROM STUDENT
+	WHERE (stu_dept = '컴퓨터정보') AND (stu_grade = 1);
+40.	SELECT *
+	FROM STUDENT
+	WHERE (stu_dept = '기계') AND (stu_grade = 2);
+41.	SELECT *
+	FROM STUDENT
+	WHERE (stu_gender = 'F') AND (stu_weight <= 60);
+42.	SELECT *
+	FROM STUDENT
+	WHERE (stu_dept != '컴퓨터정보') AND (stu_grade = 1);
+43.	SELECT stu_dept
+	FROM STUDENT
+	WHERE stu_dept != '기계';
+44.	SELECT *
+	FROM STUDENT
+	WHERE (stu_dept = '컴퓨터정보') AND (stu_grade = 2) AND (stu_class = 'A');
+45.	SELECT stu_no, stu_name
+	FROM STUDENT
+	WHERE stu_height BETWEEN 160 AND 170;
+46.	SELECT stu_no, stu_name, stu_dept
+	FROM STUDENT
+	WHERE stu_no LIKE '2013%';
+47.	SELECT *
+	FROM STUDENT 
+	WHERE (stu_grade = 1) OR (stu_grade =3);
+48.	SELECT stu_no, stu_name
+	FROM STUDENT
+	WHERE stu_name LIKE '김%';
+49.	SELECT *
+	FROM STUDENT
+	WHERE stu_no LIKE '____20%';	
+50.	
+51.	SELECT stu_name
+	FROM STUDENT
+	WHERE stu_name LIKE '%옥%';
+52.	SELECT stu_name
+	FROM STUDENT
+	WHERE stu_height IS NULL;
+53.	SELECT stu_name, stu_no
+	FROM STUDENT
+	WHERE stu_height IS NOT NULL;
+54.	SELECT stu_name, stu_no
+	FROM STUDENT
+	WHERE (stu_dept = '컴퓨터정보') OR (stu_dept = '기계');
+55.	SELECT stu_name, stu_no, stu_dept
+	FROM STUDENT
+	WHERE (stu_gender = 'M') OR (stu_grade = '1');
+56.	SELECT stu_no, stu_name
+	FROM STUDENT
+	ORDER BY stu_no;
+57.	SELECT stu_no, stu_name
+	FROM STUDENT
+	ORDER BY stu_name;
+58.	SELECT stu_no, stu_name, stu_dept
+	FROM STUDENT
+	ORDER BY stu_dept;
+59.	SELECT *
+	FROM STUDENT
+	ORDER BY stu_grade DESC;
+60.	SELECT *
+	FROM STUDENT
+	ORDER BY stu_dept, stu_class;
+61.	SELECT stu_no, stu_name
+	FROM STUDENT
+	ORDER BY stu_dept, stu_gender, stu_grade;
+62.	SELECT LOWER(stu_gender)
+	FROM STUDENT;
+63.	SELECT UPPER(stu_gender)
+	FROM STUDENT;
+64.	SELECT stu_dept || stu_name
+	FROM STUDENT;
+65.	SELECT stu_dept||'과 '||stu_grade||'학년 '||stu_name||' 입니다.'
+	FROM STUDENT;
+66.	SELECT stu_name, SUBSTR(stu_name, 0, 2)
+	FROM STUDENT;
+67.	SELECT stu_name, stu_dept, SUBSTR(stu_dept, 2, 1)
+	FROM STUDENT;
+68.	SELECT stu_name, LENGTH(stu_name)
+	FROM STUDENT;
+69.	SELECT stu_dept, LENGTH(stu_dept)
+	FROM STUDENT;
+70.	SELECT stu_name, INSTR(stu_name, '김', 1, 1)
+	FROM STUDENT;
+71.	SELECT stu_dept, INSTR(stu_dept, '기', 1, 1)
+	FROM STUDENT;	
+72.	SELECT RPAD(stu_name, 18, '&') 
+	FROM STUDENT;
+73.	SELECT LPAD(stu_dept, 20, '%') 
+	FROM STUDENT;
+74.	SELECT stu_name, stu_no, ROUND(stu_height, -1)
+	FROM STUDENT;
+75.	SELECT stu_name, stu_no, SUBSTR(stu_height, 1, 1)
+	FROM STUDENT;
+76.	SELECT MOD(stu_height, 30)
+	FROM STUDENT;
+77.	SELECT stu_height, NVL(TO_CHAR(stu_height), '미기록') 
+	FROM STUDENT;
+78.	SELECT stu_no, stu_name, NVL2(stu_height, stu_height+stu_weight, (NVL(stu_height,0)+stu_weight))
+	FROM STUDENT;
+79.	SELECT stu_no, stu_name, NVL2(stu_height, stu_height-stu_weight, (NVL(stu_height,0)-stu_weight))
+	FROM STUDENT;
+80.	SELECT stu_no, stu_name, NVL(TO_CHAR(stu_height), '입력요망')
+	FROM STUDENT;
+81.	SELECT stu_gender, CASE stu_gender WHEN 'M' THEN 'M' ELSE 'NULL' END
+	FROM STUDENT;
+82.	SELECT stu_gender, CASE stu_gender WHEN 'M' THEN '남학생' END
+	FROM STUDENT;
+83.	SELECT stu_no, stu_name, stu_gender, stu_weight,
+    	CASE stu_gender WHEN 'F' THEN stu_weight-5
+             WHEN 'M' THEN stu_weight+5
+             ELSE stu_weight
+             END as 변경된몸무게
+             FROM STUDENT;
+84.	SELECT stu_no, stu_name, stu_gender, stu_weight,
+    	DECODE(stu_gender, 'F', stu_weight+5,
+             'M', stu_weight-5,
+             stu_weight) AS 변경된몸무게
+             FROM STUDENT;
+85.	SELECT stu_name, stu_height
+	FROM STUDENT
+	WHERE stu_height = (SELECT MAX(stu_height) FROM STUDENT);
+86.	SELECT stu_name, stu_height
+	FROM STUDENT
+	WHERE stu_height = (SELECT MIN(stu_height) FROM STUDENT);
+87.	SELECT stu_name, stu_weight
+	FROM STUDENT
+	WHERE stu_weight = (SELECT MIN(stu_weight) FROM STUDENT);
+88.	SELECT MAX(stu_name), MIN(stu_name)
+	FROM STUDENT;
+89.	SELECT MAX(stu_weight), MAX(stu_height), MIN(stu_weight), MIN(stu_height)
+	FROM STUDENT;
+90.	SELECT MAX(stu_no), MIN(stu_no)
+	FROM STUDENT;
+91.	SELECT COUNT(DISTINCT stu_dept)
+	FROM STUDENT;
+92.	SELECT COUNT(DISTINCT SUBSTR(stu_name, 1, 1))
+	FROM STUDENT;
+93.	SELECT COUNT(*)
+	FROM STUDENT;
+94.	SELECT COUNT(*)
+	FROM ENROL;
+95.	SELECT stu_dept, COUNT(stu_dept)
+	FROM STUDENT
+	GROUP BY stu_dept;
+96.	SELECT stu_dept, COUNT(stu_dept)
+	FROM STUDENT
+	GROUP BY stu_dept
+	ORDER BY stu_dept DESC;
+97.	SELECT stu_grade, COUNT(stu_grade)
+	FROM STUDENT
+	GROUP BY stu_grade;
+98.	SELECT stu_grade, COUNT(stu_grade)
+	FROM STUDENT
+	GROUP BY stu_grade
+	ORDER BY stu_grade;
+99.	SELECT stu_dept, ROUND(AVG(stu_height), 1)
+	FROM STUDENT
+	GROUP BY stu_dept;
+100.	SELECT stu_dept, STDDEV(stu_weight)
+	FROM STUDENT
+	GROUP BY stu_dept;
+101.	SELECT STU_DEPT, STDDEV(STU_WEIGHT) 
+	FROM STUDENT
+	GROUP BY STU_DEPT; 
+102.	SELECT stu_dept, stu_grade, AVG(stu_weight)
+	FROM STUDENT
+	GROUP BY stu_dept, stu_grade
+	ORDER BY stu_dept;
+103.	SELECT stu_dept, stu_grade, MAX(stu_no), MIN(stu_no)
+	FROM STUDENT
+	GROUP BY stu_dept, stu_grade
+	ORDER BY stu_dept;
+104.	SELECT stu_dept, COUNT(stu_dept)
+	FROM STUDENT
+	GROUP BY stu_dept
+	ORDER BY stu_dept DESC;	
+105.	SELECT stu_dept, AVG(stu_height)
+	FROM STUDENT
+	GROUP BY stu_dept
+	ORDER BY AVG(stu_height);
+106.	SELECT stu_dept, stu_grade, AVG(stu_height), AVG(stu_weight)
+	FROM STUDENT
+	GROUP BY stu_dept, stu_grade
+	ORDER BY AVG(stu_weight) DESC;
+107.	SELECT stu_dept, AVG(stu_height)
+	FROM STUDENT
+	GROUP BY stu_dept
+	ORDER BY AVG(stu_height) DESC;
+108.	SELECT stu_dept, AVG(stu_height) AS 평균신장
+	FROM STUDENT
+	GROUP BY stu_dept
+	HAVING AVG(stu_height) >= 170
+	ORDER BY AVG(stu_height);

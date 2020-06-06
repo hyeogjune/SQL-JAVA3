@@ -1,0 +1,136 @@
+1.	SELECT *
+	FROM ENROL NATURAL JOIN STUDENT;
+2.	SELECT E.stu_no, T.stu_name, S.sub_name, E.enr_grade
+	FROM SUBJECT S, ENROL E, STUDENT T
+	WHERE S.sub_dept = T.stu_dept AND E.stu_no = T.stu_no AND E.sub_no = S.sub_no;
+3.	SELECT sub_name, stu_no, enr_grade
+	FROM SUBJECT NATURAL JOIN ENROL;
+4.	SELECT sub_name, stu_no, enr_grade
+	FROM SUBJECT JOIN ENROL
+	USING (sub_no);
+5.	SELECT S.stu_name
+	FROM STUDENT S, ENROL E
+	WHERE (S.stu_no = E.stu_no) AND (E.enr_grade >= 70);
+6.	SELECT stu_name
+	FROM ENROL JOIN STUDENT
+	USING (stu_no)
+	WHERE enr_grade >= 60
+	GROUP BY stu_name;
+7.	SELECT stu_name
+	FROM STUDENT NATURAL JOIN ENROL
+	WHERE enr_grade <= 70
+	GROUP BY stu_name;
+8.	SELECT T.sub_name, T.sub_prof
+	FROM STUDENT S, SUBJECT T, ENROL E
+	WHERE S.stu_no = E.stu_no AND E.sub_no = T.sub_no AND T.sub_dept = S.stu_dept AND S.stu_name = '김인중';
+9.	SELECT sub_name, sub_prof
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE stu_name = '김인중';
+10.	SELECT stu_name, sub_name, sub_prof
+	FROM STUDENT JOIN ENROL USING(stu_no) JOIN SUBJECT USING(sub_no)
+	WHERE stu_name = '김인중';
+11.	SELECT sub_prof, sub_name, stu_name
+	FROM SUBJECT NATURAL JOIN STUDENT NATURAL JOIN ENROL
+	WHERE sub_prof = '강종영';
+12.	SELECT sub_name, stu_no, stu_name
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE sub_name = '컴퓨터개론';
+13.	SELECT sub_name, stu_no, stu_name
+	FROM SUBJECT NATURAL JOIN ENROL NATURAL JOIN STUDENT
+	WHERE sub_name = '시스템분석설계' OR sub_name = '소프트웨어공학'
+	ORDER BY stu_no;
+14.	SELECT sub_grade, sub_name, sub_dept, stu_no, stu_name
+	FROM SUBJECT NATURAL JOIN STUDENT NATURAL JOIN ENROL
+	WHERE sub_grade = 1 OR sub_dept = '컴퓨터정보'; 
+15.	SELECT sub_name, stu_no, stu_name
+	FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+	WHERE sub_name = '기계공작법' OR sub_name = '기초전자실험'
+	ORDER BY stu_no;
+16.	SELECT sub_prof, stu_no, stu_name
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE sub_prof = '김태영' OR sub_prof = '김유석';
+17.	SELECT stu_name, enr_grade
+	FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT;
+18.	SELECT sub_name, stu_name
+	FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+	WHERE stu_name = '옥한빛';
+19.	SELECT sub_name
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE stu_gender = 'F';
+20.	SELECT stu_name, stu_weight, sub_name
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE stu_weight >= 60
+	ORDER BY stu_name;
+21.	SELECT stu_no, stu_name, sub_dept, sub_name
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE sub_dept = '컴퓨터정보';
+22.	SELECT COUNT(enr_grade)
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE enr_grade >= 70;
+23.	SELECT stu_name, stu_gender, sub_prof
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE stu_gender = 'F' AND sub_prof = '구봉규';
+24.	SELECT stu_name, stu_no
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE enr_grade > (SELECT AVG(enr_grade)
+                  	               FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+                 		   WHERE stu_name = '김종헌') AND (stu_name != '김종헌');
+25.	SELECT stu_name, stu_no
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE enr_grade < (SELECT AVG(enr_grade)
+                  	 	  FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+                 		  WHERE stu_name = '김인중') AND (stu_name != '김인중');
+26.	SELECT stu_name, stu_no, sub_name, enr_grade
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE enr_grade > (SELECT AVG(enr_grade)
+                  		   FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL); 
+27.	SELECT stu_name, stu_no, stu_dept, enr_grade
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE enr_grade > (SELECT AVG(enr_grade)
+                  		FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+                  		WHERE sub_dept = '기계')
+                 		AND
+      	          enr_grade > (SELECT AVG(enr_grade)
+                 		FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+                  		WHERE sub_dept = '전기전자')
+               		AND
+     	          enr_grade > (SELECT AVG(enr_grade)
+                		 FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+                		 WHERE sub_dept = '컴퓨터정보');
+28.	SELECT stu_dept, enr_grade, stu_name
+	FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+	WHERE enr_grade > (SELECT MAX(enr_grade)
+                 		  FROM STUDENT NATURAL JOIN SUBJECT NATURAL JOIN ENROL
+                		  WHERE sub_dept = '기계');
+29.	SELECT stu_no, stu_name, AVG(enr_grade)
+	FROM STUDENT NATURAL JOIN ENROL
+	WHERE stu_dept = '컴퓨터정보'
+	GROUP BY stu_name, stu_no
+	ORDER BY AVG(enr_grade);
+30.	SELECT stu_no, stu_name, enr_grade
+	FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+	WHERE sub_name = '시스템분석설계'
+	GROUP BY stu_name, stu_no, enr_grade
+	ORDER BY enr_grade;
+31.	SELECT stu_no, stu_name, COUNT(sub_name)
+	FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+	GROUP BY stu_no, stu_name
+	HAVING COUNT(sub_name) >= 2;
+32.	SELECT stu_no, stu_name, COUNT(sub_no)
+	FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+	GROUP BY stu_no, stu_name, stu_dept
+	HAVING COUNT(sub_no) >= 1
+	ORDER BY stu_dept, stu_no;
+33.	SELECT stu_no, stu_name, AVG(enr_grade)
+	FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+	GROUP BY stu_no, stu_name
+	HAVING AVG(enr_grade) = (SELECT MAX(AVG(enr_Grade))
+                        			FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+                        			WHERE stu_dept = '컴퓨터정보'
+                       			 GROUP BY stu_no, stu_name);
+34.	SELECT stu_no, stu_name
+		FROM STUDENT NATURAL JOIN ENROL NATURAL JOIN SUBJECT
+		GROUP BY stu_no, stu_name, sub_name
+		HAVING sub_name = '컴퓨터개론' OR sub_name = '시스템분석설계'
+		ORDER BY stu_no;
+
